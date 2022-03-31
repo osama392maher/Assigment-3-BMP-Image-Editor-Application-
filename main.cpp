@@ -11,11 +11,16 @@ unsigned char image[SIZE][SIZE];
 void loadImage ();
 void saveImage ();
 void black_and_white();
+void invert_image();
+void merge_images();
+void flip_image();
+void rotate_image();
+void darken_and_lighten_image();
 
 int main()
 {
+
   loadImage();
-  black_and_white();
   saveImage();
   return 0;
 }
@@ -48,5 +53,31 @@ void saveImage () {
 
 //_________________________________________
 void black_and_white() {
+    //code here
+
+}
+
+void invert_image() {
+    //code here
+
+}
+
+void merge_images() {
+    //code here
+
+}
+
+void flip_image() {
+    //code here
+
+}
+
+void rotate_image() {
+    //code here
+
+}
+
+void darken_and_lighten_image() {
+    //code here
 
 }
