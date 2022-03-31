@@ -10,12 +10,12 @@ unsigned char image[SIZE][SIZE];
 
 void loadImage ();
 void saveImage ();
-void doSomethingForImage ();
+void black_and_white();
 
 int main()
 {
   loadImage();
-  doSomethingForImage();
+  black_and_white();
   saveImage();
   return 0;
 }
@@ -47,7 +47,6 @@ void saveImage () {
 }
 
 //_________________________________________
-void doSomethingForImage() {
-    
+void black_and_white() {
 
 }
