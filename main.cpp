@@ -19,9 +19,55 @@ void darken_and_lighten_image();
 
 int main()
 {
+  int choice;
 
-  loadImage();
-  saveImage();
+  cout <<"  Helloo 😁" << endl;
+  cout <<"  Please select a filter to apply or 0 to exit:" << endl;
+  cout <<"    1- Black & White Filter" << endl ;
+  cout <<"    2- Invert Filter" << endl;
+  cout <<"    3- Merge Filter" << endl;
+  cout <<"    4- Flip Image" << endl;
+  cout <<"    5- Rotate Image" << endl;
+  cout <<"    6- Darken and Lighten Image" << endl;
+
+  cin >> choice;
+  
+  if (choice == 1){
+    loadImage();
+    black_and_white();
+    saveImage();
+  }
+
+  else if (choice == 2){
+    loadImage();
+    invert_image();
+    saveImage();
+  }
+
+  else if (choice == 3){
+    loadImage();
+    merge_images();
+    saveImage();
+  }
+  
+  else if (choice == 4){
+    loadImage();
+    flip_image();
+    saveImage();
+  }
+
+  else if (choice == 5){
+    loadImage();
+    rotate_image();
+    saveImage();
+  }
+  
+  else if (choice == 6){
+    loadImage();
+    darken_and_lighten_image();
+    saveImage();
+  }
+  
   return 0;
 }
 
