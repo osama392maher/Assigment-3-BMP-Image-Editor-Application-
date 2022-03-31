@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include <cstring>
 #include <cmath>
 #include "bmplib.cpp"
@@ -133,8 +134,28 @@ void merge_images() {
 }
 
 void flip_image() {
-    //code here
+  int choice;
+  cout << "How do you want to flip the image? 😌" << endl;
+  cout << "1- Horizontally" << endl;
+  cout << "2- Vertically" << endl;
+  cin >> choice;
 
+  if (choice == 2){
+      // flip vertically
+      for (int i = 0; i < SIZE / 2; i++){
+          swap(image[i], image[SIZE - i]);
+      }
+  }
+  
+  if (choice == 1){ 
+    // flip horizontally
+    for (int i = 0; i < SIZE; i++)
+    {
+      for(int j = 0; j < SIZE / 2; j++){
+          swap(image[i][j],image[i][SIZE - j]);
+      }
+    }
+  }
 }
 
 void rotate_image() {
