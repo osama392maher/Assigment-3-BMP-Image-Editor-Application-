@@ -61,7 +61,7 @@ int main()
     rotate_image();
     saveImage();
   }
-  
+
   else if (choice == 6){
     loadImage();
     darken_and_lighten_image();
@@ -99,8 +99,27 @@ void saveImage () {
 
 //_________________________________________
 void black_and_white() {
-    //code here
+    
+    long long sum = 0;
+    
+    for (int i = 0; i < SIZE; i++){
+        for (int j = 0; j < SIZE; j++){
+            sum += image[i][j];
 
+        }
+    }
+
+    long long average = sum / (256 * 256);
+
+    for (int i = 0; i < SIZE; i++){
+        for (int j = 0; j < SIZE; j++){
+            if (image[i][j] > average)
+                image[i][j] = 255;
+            else
+                image[i][j] = 0;
+
+        }
+    }
 }
 
 void invert_image() {
