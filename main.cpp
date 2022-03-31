@@ -10,17 +10,25 @@ unsigned char image[SIZE][SIZE];
 
 void loadImage ();
 void saveImage ();
+<<<<<<< HEAD
 void black_and_white();
 void invert_image();
 void merge_images();
 void flip_image();
 void rotate_image();
 void darken_and_lighten_image();
+=======
+void doSomethingForImage ();
+>>>>>>> parent of 159a584 (created the first 6 functions)
 
 int main()
 {
 
   loadImage();
+<<<<<<< HEAD
+=======
+  doSomethingForImage();
+>>>>>>> parent of 159a584 (created the first 6 functions)
   saveImage();
   return 0;
 }
@@ -52,6 +60,7 @@ void saveImage () {
 }
 
 //_________________________________________
+<<<<<<< HEAD
 void black_and_white() {
     //code here
 
@@ -79,5 +88,9 @@ void rotate_image() {
 
 void darken_and_lighten_image() {
     //code here
+=======
+void doSomethingForImage() {
+    
+>>>>>>> parent of 159a584 (created the first 6 functions)
 
 }
