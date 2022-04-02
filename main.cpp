@@ -8,6 +8,7 @@
 
 using namespace std;
 unsigned char image[SIZE][SIZE];
+unsigned char image2[SIZE][SIZE];
 
 void loadImage ();
 void saveImage ();
@@ -17,6 +18,7 @@ void merge_images();
 void flip_image();
 void rotate_image();
 void darken_and_lighten_image();
+void mirror_image();
 
 int main()
 {
@@ -30,6 +32,8 @@ int main()
   cout <<"    4- Flip Image" << endl;
   cout <<"    5- Rotate Image" << endl;
   cout <<"    6- Darken and Lighten Image" << endl;
+  cout <<"    7- mirror " << endl;
+  cout <<"    0- exit" << endl;
 
   cin >> choice;
   
@@ -68,8 +72,15 @@ int main()
     darken_and_lighten_image();
     saveImage();
   }
-  
-  return 0;
+
+  else if (choice == 7){
+    loadImage();
+    mirror_image();
+    saveImage();
+  } 
+  else if (choice == 0){
+    return 0;
+  }
 }
 
 //_________________________________________
@@ -129,7 +140,7 @@ void invert_image() {
 }
 
 void merge_images() {
-    //code here
+    //code
 
 }
 
@@ -166,4 +177,52 @@ void rotate_image() {
 void darken_and_lighten_image() {
     //code here
 
+}
+void mirror_image() {
+
+    int choice;
+
+    cout << "how do you want to mirror the image ?" << endl;
+    cout << "1- lower 1/2" << endl;
+    cout << "2- Upper 1/2" << endl;
+    cout << "3- right 1/2" << endl;
+    cout << "4- left  1/2 " << endl;
+
+    cin >> choice;
+
+    switch (choice) {
+      case 1:
+      //Upper 1/2 
+        for (int i = 0; i < SIZE / 2; i++){
+          copy(std::begin(image[i]), std::end(image[i]), std::begin(image[SIZE - i]));
+        }
+        break;
+
+      case 2:
+      //lower 1/2
+      for (int i = 0; i < SIZE / 2; i++){
+          copy(std::begin(image[SIZE - i]), std::end(image[SIZE - i]), std::begin(image[i]));
+        }
+        break;
+
+      case 3:
+      // Right 1/2
+      for (int i = 0; i < SIZE; i++)
+      {
+        for (int j = 0; j < SIZE / 2; j++){
+          image[i][j] = image[i][SIZE - j];
+        }
+      }
+      break;
+
+      case 4:
+      // left 1/2
+      for (int i = 0; i < SIZE; i++)
+      { 
+        for (int j = 0; j < SIZE / 2; j++){
+          image[i][SIZE - j] = image[i][j];
+        }
+      }
+      break; 
+  }
 }
