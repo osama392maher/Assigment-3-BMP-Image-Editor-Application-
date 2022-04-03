@@ -38,7 +38,7 @@ int main()
   cout <<"    0- exit" << endl;
 
   cin >> choice;
-  
+
   if (choice == 1){
     loadImage();
     black_and_white();
@@ -57,7 +57,7 @@ int main()
     merge_images();
     save_newImage();
   }
-  
+
   else if (choice == 4){
     loadImage();
     flip_image();
@@ -80,7 +80,7 @@ int main()
     loadImage();
     mirror_image();
     saveImage();
-  } 
+  }
   else if (choice == 0){
     return 0;
   }
@@ -140,9 +140,9 @@ void save_newImage() {
 
 //_________________________________________
 void black_and_white() {
-    
+
     long long sum = 0;
-    
+
     for (int i = 0; i < SIZE; i++){
         for (int j = 0; j < SIZE; j++){
             sum += image[i][j];
@@ -169,7 +169,7 @@ void invert_image() {
         for (int j = 0; j < SIZE; j++) {
             image[i][j] = 255 - image[i][j];
 <<<<<<< HEAD
-             
+
 =======
 >>>>>>> 1c664a32bfe5a312d78cd48f62fe2cf3b4295b2e
         }
@@ -198,8 +198,8 @@ void flip_image() {
           swap(image[i], image[SIZE - i]);
       }
   }
-  
-  if (choice == 1){ 
+
+  if (choice == 1){
     // flip horizontally
     for (int i = 0; i < SIZE; i++)
     {
@@ -218,7 +218,7 @@ void rotate_image() {
     cout << "3- To rotate the image clockwise by 270 " << endl;
     cin >> choice;
     if (choice == 1) {
-        // Rotate the image clockwise by 90 
+        // Rotate the image clockwise by 90
         for (int i = 0; i < SIZE; i++)
         {
             for (int j = i; j < SIZE; j++) {
@@ -232,7 +232,7 @@ void rotate_image() {
         for (int i = 0; i < SIZE; i++)
         {
             for (int j = 0; j < SIZE / 2; j++) {
-             
+
                     int temp = image[i][j];
                     image[i][j] = image[i][SIZE-j-1];
                     image[i][SIZE-j-1] = temp;
@@ -240,8 +240,8 @@ void rotate_image() {
             }
     }
     if (choice == 2) {
-        // Rotate the image clockwise by 180 
-        
+        // Rotate the image clockwise by 180
+
         for (int i = 0; i < SIZE/2; i++)
         {
             for (int j = 0; j < SIZE; j++) {
@@ -265,13 +265,38 @@ void rotate_image() {
                 }
             }
         }
-        
+
     }
 
 }
 
 void darken_and_lighten_image() {
-    //code here
+
+    int choice;
+	cout << "What you want to do in the image?" << endl;
+	cout << "1- Lighten the image" << endl;
+	cout << "2- Darken the image" << endl;
+	cin >> choice;
+
+	//lighten image
+	if (choice == 1) {
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				image[i][j] = ((image[i][j])+255)/2;
+			}
+
+		}
+	}
+	//darken image
+	if (choice == 2) {
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				image[i][j] = (image[i][j])/2;
+
+
+			}
+		}
+	}
 
 }
 void mirror_image() {
@@ -288,7 +313,7 @@ void mirror_image() {
 
     switch (choice) {
       case 1:
-      //Upper 1/2 
+      //Upper 1/2
         for (int i = 0; i < SIZE / 2; i++){
           copy(std::begin(image[i]), std::end(image[i]), std::begin(image[SIZE - i]));
         }
@@ -314,12 +339,12 @@ void mirror_image() {
       case 4:
       // left 1/2
       for (int i = 0; i < SIZE; i++)
-      { 
+      {
         for (int j = 0; j < SIZE / 2; j++){
           image[i][SIZE - j] = image[i][j];
         }
       }
-      break; 
+      break;
   }
 
 }
