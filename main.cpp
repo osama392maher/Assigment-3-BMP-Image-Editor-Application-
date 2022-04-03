@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -124,7 +123,16 @@ void black_and_white() {
 }
 
 void invert_image() {
-    //code here
+
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            image[i][j] = 255 - image[i][j];
+             
+            
+
+        }
+    }
+}
 
 }
 
