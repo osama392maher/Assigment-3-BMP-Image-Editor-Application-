@@ -8,9 +8,12 @@
 using namespace std;
 unsigned char image[SIZE][SIZE];
 unsigned char image2[SIZE][SIZE];
+unsigned char new_image[SIZE][SIZE];
 
 void loadImage ();
+void loadImage2();
 void saveImage ();
+void save_newImage();
 void black_and_white();
 void invert_image();
 void merge_images();
@@ -50,8 +53,9 @@ int main()
 
   else if (choice == 3){
     loadImage();
+    loadImage2();
     merge_images();
-    saveImage();
+    save_newImage();
   }
   
   else if (choice == 4){
@@ -96,6 +100,19 @@ void loadImage () {
 }
 
 //_________________________________________
+void loadImage2() {
+    char imageFileName[100];
+
+    // Get gray scale image 2 file name
+    cout << "Enter the source image 2 file name: ";
+    cin >> imageFileName;
+
+    // Add to it .bmp extension and load image 2
+    strcat(imageFileName, ".bmp");
+    readGSBMP(imageFileName, image2);
+}
+
+//_________________________________________
 void saveImage () {
    char imageFileName[100];
 
@@ -106,6 +123,19 @@ void saveImage () {
    // Add to it .bmp extension and load image
    strcat (imageFileName, ".bmp");
    writeGSBMP(imageFileName, image);
+}
+
+//_________________________________________
+void save_newImage() {
+    char imageFileName[100];
+
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> imageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat(imageFileName, ".bmp");
+    writeGSBMP(imageFileName, new_image);
 }
 
 //_________________________________________
@@ -146,8 +176,11 @@ void invert_image() {
     }
 }
 void merge_images() {
-    //code
-
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            new_image[i][j] = (image[i][j] + image2[i][j]) / 2;
+        }
+    }
 }
 
 void flip_image() {
