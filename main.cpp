@@ -138,10 +138,6 @@ void invert_image() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             image[i][j] = 255 - image[i][j];
-<<<<<<< HEAD
-             
-=======
->>>>>>> 1c664a32bfe5a312d78cd48f62fe2cf3b4295b2e
         }
     }
 }
@@ -157,14 +153,17 @@ void flip_image() {
   cout << "2- Vertically" << endl;
   cin >> choice;
 
-  if (choice == 2){
+  if (choice == 2)
+  {
       // flip vertically
-      for (int i = 0; i < SIZE / 2; i++){
+      for (int i = 0; i < SIZE / 2; i++)
+      {
           swap(image[i], image[SIZE - i]);
       }
   }
   
-  if (choice == 1){ 
+  if (choice == 1)
+  { 
     // flip horizontally
     for (int i = 0; i < SIZE; i++)
     {
@@ -172,17 +171,23 @@ void flip_image() {
           swap(image[i][j],image[i][SIZE - j]);
       }
     }
+    
   }
 }
 
 void rotate_image() {
+
     int choice;
+    
     cout << "How do you want to rotate the image? 😌" << endl;
     cout << "1- To rotate the image clockwise by 90 " << endl;
     cout << "2- To rotate the image clockwise by 180 " << endl;
     cout << "3- To rotate the image clockwise by 270 " << endl;
+    
     cin >> choice;
+    
     if (choice == 1) {
+    
         // Rotate the image clockwise by 90 
         for (int i = 0; i < SIZE; i++)
         {
@@ -194,6 +199,7 @@ void rotate_image() {
                 }
             }
         }
+
         for (int i = 0; i < SIZE; i++)
         {
             for (int j = 0; j < SIZE / 2; j++) {
@@ -204,13 +210,14 @@ void rotate_image() {
                 }
             }
     }
+
     if (choice == 2) {
         // Rotate the image clockwise by 180 
         
         for (int i = 0; i < SIZE/2; i++)
         {
             for (int j = 0; j < SIZE; j++) {
-
+    
                 int temp = image[i][j];
                 image[i][j] = image[SIZE-i-1][j];
                 image[SIZE-i-1][j] = temp;
@@ -219,10 +226,12 @@ void rotate_image() {
     }
 
     if (choice == 3) {
+    
         // Rotate the image clockwise by 270
         for (int i = 0; i < SIZE; i++)
         {
             for (int j = i; j < SIZE; j++) {
+                
                 if (i != j) {
                     int temp = image[i][j];
                     image[i][j] = image[j][i];
