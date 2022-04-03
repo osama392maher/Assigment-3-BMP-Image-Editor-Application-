@@ -8,9 +8,12 @@
 using namespace std;
 unsigned char image[SIZE][SIZE];
 unsigned char image2[SIZE][SIZE];
+unsigned char new_image[SIZE][SIZE];
 
 void loadImage ();
+void loadImage2();
 void saveImage ();
+void save_newImage();
 void black_and_white();
 void invert_image();
 void merge_images();
@@ -35,7 +38,7 @@ int main()
   cout <<"    0- exit" << endl;
 
   cin >> choice;
-  
+
   if (choice == 1){
     loadImage();
     black_and_white();
@@ -50,10 +53,11 @@ int main()
 
   else if (choice == 3){
     loadImage();
+    loadImage2();
     merge_images();
-    saveImage();
+    save_newImage();
   }
-  
+
   else if (choice == 4){
     loadImage();
     flip_image();
@@ -76,7 +80,7 @@ int main()
     loadImage();
     mirror_image();
     saveImage();
-  } 
+  }
   else if (choice == 0){
     return 0;
   }
@@ -96,6 +100,19 @@ void loadImage () {
 }
 
 //_________________________________________
+void loadImage2() {
+    char imageFileName[100];
+
+    // Get gray scale image 2 file name
+    cout << "Enter the source image 2 file name: ";
+    cin >> imageFileName;
+
+    // Add to it .bmp extension and load image 2
+    strcat(imageFileName, ".bmp");
+    readGSBMP(imageFileName, image2);
+}
+
+//_________________________________________
 void saveImage () {
    char imageFileName[100];
 
@@ -109,10 +126,23 @@ void saveImage () {
 }
 
 //_________________________________________
+void save_newImage() {
+    char imageFileName[100];
+
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> imageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat(imageFileName, ".bmp");
+    writeGSBMP(imageFileName, new_image);
+}
+
+//_________________________________________
 void black_and_white() {
-    
+
     long long sum = 0;
-    
+
     for (int i = 0; i < SIZE; i++){
         for (int j = 0; j < SIZE; j++){
             sum += image[i][j];
@@ -138,12 +168,18 @@ void invert_image() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             image[i][j] = 255 - image[i][j];
+
         }
     }
 }
-void merge_images() {
-    //code
 
+void merge_images() {
+
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            new_image[i][j] = (image[i][j] + image2[i][j]) / 2;
+        }
+    }
 }
 
 void flip_image() {
@@ -160,10 +196,9 @@ void flip_image() {
       {
           swap(image[i], image[SIZE - i]);
       }
-  }
-  
-  if (choice == 1)
-  { 
+  }  
+
+  if (choice == 1){
     // flip horizontally
     for (int i = 0; i < SIZE; i++)
     {
@@ -187,8 +222,12 @@ void rotate_image() {
     cin >> choice;
     
     if (choice == 1) {
+<<<<<<< HEAD
     
         // Rotate the image clockwise by 90 
+=======
+        // Rotate the image clockwise by 90
+>>>>>>> 2394e3cf8f1e0a2c51ded691667706c6f10f7fa1
         for (int i = 0; i < SIZE; i++)
         {
             for (int j = i; j < SIZE; j++) {
@@ -203,7 +242,7 @@ void rotate_image() {
         for (int i = 0; i < SIZE; i++)
         {
             for (int j = 0; j < SIZE / 2; j++) {
-             
+
                     int temp = image[i][j];
                     image[i][j] = image[i][SIZE-j-1];
                     image[i][SIZE-j-1] = temp;
@@ -212,8 +251,8 @@ void rotate_image() {
     }
 
     if (choice == 2) {
-        // Rotate the image clockwise by 180 
-        
+        // Rotate the image clockwise by 180
+
         for (int i = 0; i < SIZE/2; i++)
         {
             for (int j = 0; j < SIZE; j++) {
@@ -239,13 +278,38 @@ void rotate_image() {
                 }
             }
         }
-        
+
     }
 
 }
 
 void darken_and_lighten_image() {
-    //code here
+
+    int choice;
+	cout << "What you want to do in the image?" << endl;
+	cout << "1- Lighten the image" << endl;
+	cout << "2- Darken the image" << endl;
+	cin >> choice;
+
+	//lighten image
+	if (choice == 1) {
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				image[i][j] = ((image[i][j])+255)/2;
+			}
+
+		}
+	}
+	//darken image
+	if (choice == 2) {
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				image[i][j] = (image[i][j])/2;
+
+
+			}
+		}
+	}
 
 }
 void mirror_image() {
@@ -262,7 +326,7 @@ void mirror_image() {
 
     switch (choice) {
       case 1:
-      //Upper 1/2 
+      //Upper 1/2
         for (int i = 0; i < SIZE / 2; i++){
           copy(std::begin(image[i]), std::end(image[i]), std::begin(image[SIZE - i]));
         }
@@ -288,12 +352,12 @@ void mirror_image() {
       case 4:
       // left 1/2
       for (int i = 0; i < SIZE; i++)
-      { 
+      {
         for (int j = 0; j < SIZE / 2; j++){
           image[i][SIZE - j] = image[i][j];
         }
       }
-      break; 
+      break;
   }
 
 }
