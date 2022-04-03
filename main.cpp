@@ -175,7 +175,9 @@ void invert_image() {
         }
     }
 }
+
 void merge_images() {
+
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             new_image[i][j] = (image[i][j] + image2[i][j]) / 2;
