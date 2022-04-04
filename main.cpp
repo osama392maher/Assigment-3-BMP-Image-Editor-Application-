@@ -128,8 +128,6 @@ void invert_image() {
         for (int j = 0; j < SIZE; j++) {
             image[i][j] = 255 - image[i][j];
              
-            
-
         }
     }
 }
@@ -167,7 +165,62 @@ void flip_image() {
 }
 
 void rotate_image() {
-    //code here
+    int choice;
+    cout << "How do you want to rotate the image? 😌" << endl;
+    cout << "1- To rotate the image clockwise by 90 " << endl;
+    cout << "2- To rotate the image clockwise by 180 " << endl;
+    cout << "3- To rotate the image clockwise by 270 " << endl;
+    cin >> choice;
+    if (choice == 1) {
+        // Rotate the image clockwise by 90 
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = i; j < SIZE; j++) {
+                if (i != j) {
+                    int temp = image[i][j];
+                    image[i][j] = image[j][i];
+                    image[j][i] = temp;
+                }
+            }
+        }
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE / 2; j++) {
+             
+                    int temp = image[i][j];
+                    image[i][j] = image[i][SIZE-j-1];
+                    image[i][SIZE-j-1] = temp;
+                }
+            }
+    }
+    if (choice == 2) {
+        // Rotate the image clockwise by 180 
+        
+        for (int i = 0; i < SIZE/2; i++)
+        {
+            for (int j = 0; j < SIZE; j++) {
+
+                int temp = image[i][j];
+                image[i][j] = image[SIZE-i-1][j];
+                image[SIZE-i-1][j] = temp;
+            }
+        }
+    }
+
+    if (choice == 3) {
+        // Rotate the image clockwise by 270
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = i; j < SIZE; j++) {
+                if (i != j) {
+                    int temp = image[i][j];
+                    image[i][j] = image[j][i];
+                    image[j][i] = temp;
+                }
+            }
+        }
+        
+    }
 
 }
 
