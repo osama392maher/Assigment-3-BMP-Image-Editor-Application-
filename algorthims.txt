@@ -1,0 +1,30 @@
+--- black and white filter ---
+-> first get the sum of all the pixels with a for loop
+-> then divide the sum by the number of all pixels which is (256 * 256) to get the average
+-> then compare between each pixle and the average
+-> if the pixle value is less than the average then turn it to white
+-> if the pixle value is greater than the average then turn it to black
+
+
+--- flip filter --- 
+-> first ask the user if he want to flip the image horizontaly or vertically
+
+-> if he want to flip it vertically 
+---> we will swap the columns the first coulmn and the last column and the second column and the before last and so on
+
+-> if he want to flip it horizontaly
+---> we will swap the rows as we swapped the rows 
+____________________________________________________________________________________________________________________________________________________
+
+Algorithm of filter (invert image):
+Nested for loop To go through each line and column of the matrix and subtract their value from 255 (white)
+
+Algorithm of filter (rotate_image):
+
+ask the user if he want to rotate the image 90, 180 or 270
+
+To rotate the image clockwise by 90:    Nested for loop To go through each row and column of the matrix.if condition to check that (i) don't equal (j) and  swap each row with each column.  Another nested loop to swap the first column with the last. 
+To rotate the image clockwise by 180:   Nested for loop To go through each half row and column of the matrix.And swap the first row with the last.
+To rotate the image clockwise by 270    :Nested for loop To go through each row and column of the matrix.if condition to check that (i) don't equal (j) and  swap each row with each column.  
+
+

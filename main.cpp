@@ -1,3 +1,12 @@
+// FCI – Programming 1 – 2022 - Assignment 3
+// Program Name: filters.cpp // Last Modification Date: 5/4/2022
+￼    // Author1 and ID : osama maher masoued    20210060
+     // Author2 and ID : Nada Essam El_Din Essa 20211104
+     // Author3 and ID :
+     // Group : S1 - S2
+     // Teaching Assistant:
+     // Purpose:..........
+
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -221,13 +230,8 @@ void rotate_image() {
     
     cin >> choice;
     
-    if (choice == 1) {
-<<<<<<< HEAD
-    
+    if (choice == 1) { 
         // Rotate the image clockwise by 90 
-=======
-        // Rotate the image clockwise by 90
->>>>>>> 2394e3cf8f1e0a2c51ded691667706c6f10f7fa1
         for (int i = 0; i < SIZE; i++)
         {
             for (int j = i; j < SIZE; j++) {
@@ -285,7 +289,7 @@ void rotate_image() {
 
 void darken_and_lighten_image() {
 
-    int choice;
+  int choice;
 	cout << "What you want to do in the image?" << endl;
 	cout << "1- Lighten the image" << endl;
 	cout << "2- Darken the image" << endl;
@@ -359,5 +363,7 @@ void mirror_image() {
       }
       break;
   }
+
+  
 
 }
