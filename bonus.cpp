@@ -358,26 +358,34 @@ void mirror_image(){
     cin >> choice;
 
     switch (choice) {
-     /*
+     
       case 1:
       //Upper 1/2
         for (int i = 0; i < SIZE / 2; i++){
-          copy(std::begin(image[i]), std::end(image[i]), std::begin(image[SIZE - i]));
+            for (int j = 0; j < SIZE; j++){  
+                image[i][j][0] = image[SIZE - i][j][0];
+                image[i][j][1] = image[SIZE - i][j][1];
+                image[i][j][2] = image[SIZE - i][j][2];
+        }
         }
         break;
 
       case 2:
       //lower 1/2
       for (int i = 0; i < SIZE / 2; i++){
-          copy(std::begin(image[SIZE - i]), std::end(image[SIZE - i]), std::begin(image[i]));
+        for (int j = 0; i < SIZE; j++){
+                image[SIZE - i][j][0] = image[i][j][0];
+                image[SIZE - i][j][1] = image[i][j][1];
+                image[SIZE - i][j][2] = image[i][j][2];
+  
+        }
         }
         break;
-    */
       case 3:
       // Right 1/2
       for (int i = 0; i < SIZE; i++)
       {
-        for (int j = 0; j < SIZE / 2; j++){
+        for (int j = 0; j < SIZE; j++){
           image[i][j][0] = image[i][SIZE - j][0];
           image[i][j][1] = image[i][SIZE - j][1];
           image[i][j][2] = image[i][SIZE - j][2];
@@ -399,10 +407,8 @@ void mirror_image(){
         }
       }
       break;
-  }
-
   
-
+}
 }
 /*
 //_________________________________________
