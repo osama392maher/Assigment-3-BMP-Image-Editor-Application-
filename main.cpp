@@ -1,11 +1,11 @@
 // FCI – Programming 1 – 2022 - Assignment 3
 // Program Name: filters.cpp // Last Modification Date: 5/4/2022
-￼    // Author1 and ID : osama maher masoued    20210060
+￼    // Author1 and ID : Osama Maher Masoued    20210060
      // Author2 and ID : Nada Essam El_Din Essa 20211104
-     // Author3 and ID :
+     // Author3 and ID : Sara Adel Hanafy Bayoumi 20211046
      // Group : S1 - S2
-     // Teaching Assistant:
-     // Purpose:..........
+     // Teaching Assistant: Nesma
+     // Purpose: create a program that apply filters to photos
 
 #include <iostream>
 #include <fstream>
