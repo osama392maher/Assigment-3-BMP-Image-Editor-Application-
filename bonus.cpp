@@ -27,11 +27,11 @@ void black_and_white();
 void invert_image();
 void flip_image();
 void mirror_image();
+void detect_edges();
 /*
 void merge_images();
 void rotate_image();
 void darken_and_lighten_image();
-void detect_edges();
 */
 int main()
 {
@@ -94,7 +94,6 @@ int main()
     mirror_image();
     saveImage();
   }
-  /*
   else if (choice == 8){
     loadImage();
     detect_edges();
@@ -103,7 +102,6 @@ int main()
   else if (choice == 0){
     return 0;
   }
-  */
 }
 
 //_________________________________________
@@ -410,7 +408,6 @@ void mirror_image(){
   
 }
 }
-/*
 //_________________________________________
 
 void detect_edges() {
@@ -423,15 +420,19 @@ int gy_val[3][3] = {{-1,-2,-1},
                     {0, 0, 0},
                     {1, 2, 1}};
 
-double gx, gy;
+double gx_red, gy_red, gx_blue, gy_blue, gx_green, gy_green;
 int i_index = 0;
 int j_index = 0;
-int pixel_val;
+int red_val, green_val, blue_val;
 
 for (int i = 0; i < SIZE; i++){
     for (int j = 0; j < SIZE; j++){
-        gx = 0;
-        gy = 0;
+        gx_red = 0;
+        gx_green = 0;
+        gx_blue = 0;
+        gy_red = 0;
+        gy_green = 0;
+        gy_blue = 0;
 
         for (int x = 0; x < 3; x++){
             for (int y = 0; y < 3; y++){
@@ -440,19 +441,33 @@ for (int i = 0; i < SIZE; i++){
                 j_index = (j - 1) + y;
 
                 if (0 <= i_index && i_index <= 255 && 0 <= j_index && j_index <= 255){
-                    gx += image[i_index][j_index] * gx_val[x][y];
-                    gy += image[i_index][j_index] * gy_val[x][y];
+                    gx_red += image[i_index][j_index][0] * gx_val[x][y];
+                    gx_green += image[i_index][j_index][1] * gx_val[x][y];
+                    gx_blue += image[i_index][j_index][2] * gx_val[x][y];
+                    gy_red += image[i_index][j_index][0] * gy_val[x][y];
+                    gy_green += image[i_index][j_index][1] * gy_val[x][y];
+                    gy_blue += image[i_index][j_index][2] * gy_val[x][y];
                 }
             }
         }
 
-        pixel_val = round(sqrt((gx * gx) + (gy * gy)));
+        red_val = round(sqrt((gx_red * gx_red) + (gy_red * gy_red)));
+        green_val = round(sqrt((gx_green * gx_green) + (gy_green * gy_green)));
+        blue_val = round(sqrt((gx_blue * gx_blue) + (gy_blue * gy_blue)));
 
-        if (pixel_val > 255) {
-          pixel_val = 255;
+        if (red_val > 255) {
+          red_val = 255;
+        }
+        if (green_val > 255) {
+          green_val = 255;
+        }
+        if (blue_val > 255) {
+          blue_val = 255;
         }
         
-        new_image[i][j] = pixel_val;
+        new_image[i][j][0] = red_val;
+        new_image[i][j][1] = green_val;
+        new_image[i][j][2] = blue_val;
     }
 }
-*/
+}
