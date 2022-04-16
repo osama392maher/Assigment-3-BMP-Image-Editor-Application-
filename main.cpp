@@ -383,7 +383,6 @@ void mirror_image() {
 }
 
 //_________________________________________
-
 void detect_edges() {
 
 int gx_val[3][3] = {{-1, 0, 1},
@@ -427,4 +426,22 @@ for (int i = 0; i < SIZE; i++){
     }
 }
 
+for (int i = 0; i < SIZE; i++){
+    for (int j = 0; j < SIZE; j++)
+      if (new_image[i][j] != 255){
+          new_image[i][j] = 0 ;
+      }
+}
+
+for (int i = 0; i < SIZE; i++){
+    for (int j = 0; j < SIZE; j++){
+      
+      if (new_image[i][j] == 255) {
+          new_image[i][j] = 0;
+      }
+      else if (new_image[i][j] == 0) {
+          new_image[i][j] = 255 ;
+      }
+}
+}
 }
