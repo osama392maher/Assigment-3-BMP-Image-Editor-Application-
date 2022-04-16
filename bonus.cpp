@@ -25,12 +25,12 @@ void saveImage ();
 void save_newImage();
 void black_and_white();
 void invert_image();
+void flip_image();
+void mirror_image();
 /*
 void merge_images();
-void flip_image();
 void rotate_image();
 void darken_and_lighten_image();
-void mirror_image();
 void detect_edges();
 */
 int main()
@@ -69,12 +69,13 @@ int main()
     merge_images();
     save_newImage();
   }
-
+*/
   else if (choice == 4){
     loadImage();
     flip_image();
     saveImage();
   }
+/*
 
   else if (choice == 5){
     loadImage();
@@ -87,12 +88,13 @@ int main()
     darken_and_lighten_image();
     saveImage();
   }
-
+*/
   else if (choice == 7){
     loadImage();
     mirror_image();
     saveImage();
   }
+  /*
   else if (choice == 8){
     loadImage();
     detect_edges();
@@ -199,6 +201,7 @@ void invert_image() {
         }
     }
 }
+}
 /*
 //_________________________________________
 void merge_images() {
@@ -209,7 +212,7 @@ void merge_images() {
         }
     }
 }
-
+*/
 //_________________________________________
 void flip_image() {
   int choice;
@@ -232,13 +235,15 @@ void flip_image() {
     for (int i = 0; i < SIZE; i++)
     {
       for(int j = 0; j < SIZE / 2; j++){
-          swap(image[i][j],image[i][SIZE - j]);
+          swap(image[i][j][0],image[i][SIZE - j][0]);
+          swap(image[i][j][1],image[i][SIZE - j][1]);
+          swap(image[i][j][2],image[i][SIZE - j][2]);
       }
     }
     
   }
 }
-
+/*
 //_________________________________________
 void rotate_image() {
 
@@ -338,9 +343,9 @@ void darken_and_lighten_image() {
 	}
 
 }
-
+*/
 //_________________________________________
-void mirror_image() {
+void mirror_image(){
 
     int choice;
 
@@ -353,6 +358,7 @@ void mirror_image() {
     cin >> choice;
 
     switch (choice) {
+     /*
       case 1:
       //Upper 1/2
         for (int i = 0; i < SIZE / 2; i++){
@@ -366,13 +372,16 @@ void mirror_image() {
           copy(std::begin(image[SIZE - i]), std::end(image[SIZE - i]), std::begin(image[i]));
         }
         break;
-
+    */
       case 3:
       // Right 1/2
       for (int i = 0; i < SIZE; i++)
       {
         for (int j = 0; j < SIZE / 2; j++){
-          image[i][j] = image[i][SIZE - j];
+          image[i][j][0] = image[i][SIZE - j][0];
+          image[i][j][1] = image[i][SIZE - j][1];
+          image[i][j][2] = image[i][SIZE - j][2];
+
         }
       }
       break;
@@ -382,7 +391,11 @@ void mirror_image() {
       for (int i = 0; i < SIZE; i++)
       {
         for (int j = 0; j < SIZE / 2; j++){
-          image[i][SIZE - j] = image[i][j];
+          image[i][SIZE - j][0] = image[i][j][0];
+          image[i][SIZE - j][1] = image[i][j][1];
+          image[i][SIZE - j][2] = image[i][j][2];
+
+          
         }
       }
       break;
@@ -391,7 +404,7 @@ void mirror_image() {
   
 
 }
-
+/*
 //_________________________________________
 
 void detect_edges() {
@@ -437,4 +450,3 @@ for (int i = 0; i < SIZE; i++){
     }
 }
 */
-}
