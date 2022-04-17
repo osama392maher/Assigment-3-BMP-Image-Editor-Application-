@@ -21,6 +21,7 @@ void flip_image();
 void rotate_image();
 void darken_and_lighten_image();
 void mirror_image();
+void enlarge_image();
 
 int main()
 {
@@ -346,5 +347,22 @@ void mirror_image() {
       }
       break;
   }
+    void enlarge_image() {
+        int ii = 0, jj = 0;
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                new__image[i][j] = image[ii][jj];
+                new__image[i][j + 1] = image[ii][jj];
+                new__image[i + 1][j] = image[ii][jj];
+                new__image[i + 1][j + 1] = image[ii][jj];
+                jj += 1;
+            }
+            jj = 0;
+            ii += 1;
 
+        }
+
+
+
+    }
 }
