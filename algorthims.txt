@@ -28,3 +28,26 @@ To rotate the image clockwise by 180:   Nested for loop To go through each half 
 To rotate the image clockwise by 270    :Nested for loop To go through each row and column of the matrix.if condition to check that (i) don't equal (j) and  swap each row with each column.  
 
 
+
+An algorithm for darken and lighten filter:
+1. Ask the user if he wants to light the image or dark it.
+2. If he chooses to lighten the image:
+	a. Make nested for loop to check for each pixel in the image.
+	b.Add the values of the pixels to 255 then divide them by 2
+3. If he chooses to darken the image:
+	a. Make nested for loop to check for each pixel in the image.
+	b. Divide the values of the pixels by 2
+
+An algorithm for merge filter:
+1.Make nested for loop to check for each pixel in the two images that we want to merge them.
+2.the pixels of new image equal to the sum of the pixels of the two images divide by 2.
+
+
+
+
+
+
+
+
+
+

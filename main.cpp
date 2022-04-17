@@ -141,7 +141,7 @@ void loadImage2()
 }
 
 //_________________________________________
-void saveImage())
+void saveImage()
 {
     char imageFileName[100];
 
