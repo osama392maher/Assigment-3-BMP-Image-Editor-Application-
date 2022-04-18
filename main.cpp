@@ -31,9 +31,11 @@ void rotate_image();
 void darken_and_lighten_image();
 void mirror_image();
 void enlarge_image();
- 
+void shrink_image();
+<<<<<<< HEAD
 
 void detect_edges();
+>>>>>>> ef3e4ebcad3db5adce5a9544af1a1f7985cc1e21
 
 int main()
 {
@@ -50,6 +52,7 @@ int main()
     cout << "    7- mirror " << endl;
     cout << "    8- detect image " << endl;
     cout << "    9- enlarge image " << endl;
+    cout << "    10- Shrink image " << endl;
     cout << "    0- exit" << endl;
 
     cin >> choice;
@@ -114,6 +117,13 @@ int main()
     {
         loadImage();
         enlarge_image();
+        save_newImage();
+    }
+
+    else if (choice == 10)
+    {
+        loadImage();
+        shrink_image();
         save_newImage();
     }
     else if (choice == 0)
@@ -439,9 +449,22 @@ void mirror_image()
                     image[i][SIZE - j] = image[i][j];
                 }
             }
-        break;
+            break;
     }
-}
+
+
+<<<<<<< HEAD
+      case 4:
+      // left 1/2
+      for (int i = 0; i < SIZE; i++)
+      {
+        for (int j = 0; j < SIZE / 2; j++){
+          image[i][SIZE - j] = image[i][j];
+        }
+      }
+      break;
+  }
+
 
 //_________________________________________
 void detect_edges()
@@ -514,11 +537,10 @@ void detect_edges()
             }
         }
     }
-   
-}
-void enlarge_image() {
-        int ii = 128, jj = 0;
-        for (int i = 0;i < SIZE ;i += 2) {
+    //_________________________________________
+    void enlarge_image() {
+        int ii = 0, jj = 0;
+        for (int i = 0;i < SIZE;i += 2) {
             for (int j = 0; j < SIZE; j += 2) {
                 new_image[i][j] = image[ii][jj];
                 new_image[i][j + 1] = image[ii][jj];
@@ -537,3 +559,53 @@ void enlarge_image() {
     
     
     }
+
+}
+//_________________________________________
+void shrink_image() {
+
+    int choice;
+    cout << "How do you want to shrink the photo?" << endl;
+    cout << "1- Shrink it to the half " << endl;
+    cout << "2- Shrink it to the third " << endl;
+    cout << "3- Shrink it to the quarter " << endl;
+    cin >> choice;
+
+    int k = 0, l = 0;
+
+    //shrink to 1/2
+    if (choice == 1) {
+        for (int i = 0; i < SIZE; i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                new_image[k][l] = image[i][j];
+                l++;
+            }
+            l = 0;
+            k++;
+        }
+    }
+    //shrink to 1/3
+    else if (choice == 2) {
+        for (int i = 0; i < SIZE; i += 3) {
+            for (int j = 0; j < SIZE; j += 3) {
+                new_image[k][l] = image[i][j];
+                l++;
+            }
+            l = 0;
+            k++;
+        }
+    }
+    //shrink to 1/4
+    else if (choice == 3) {
+        int k = 0, z = 0;
+        for (int i = 0; i < SIZE; i += 4) {
+            for (int j = 0; j < SIZE; j += 4) {
+                new_image[k][l] = image[i][j];
+                l++;
+            }
+
+            l = 0;
+            k++;
+        }
+    }
+}
