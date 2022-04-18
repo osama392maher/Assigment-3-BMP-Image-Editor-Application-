@@ -32,10 +32,7 @@ void darken_and_lighten_image();
 void mirror_image();
 void enlarge_image();
 void shrink_image();
-<<<<<<< HEAD
-
 void detect_edges();
->>>>>>> ef3e4ebcad3db5adce5a9544af1a1f7985cc1e21
 
 int main()
 {
@@ -452,20 +449,7 @@ void mirror_image()
             break;
     }
 
-
-<<<<<<< HEAD
-      case 4:
-      // left 1/2
-      for (int i = 0; i < SIZE; i++)
-      {
-        for (int j = 0; j < SIZE / 2; j++){
-          image[i][SIZE - j] = image[i][j];
-        }
-      }
-      break;
-  }
-
-
+}
 //_________________________________________
 void detect_edges()
 {
@@ -537,6 +521,7 @@ void detect_edges()
             }
         }
     }
+}
     //_________________________________________
     void enlarge_image() {
         int ii = 0, jj = 0;
@@ -551,15 +536,7 @@ void detect_edges()
             jj = 0;
             ii += 1;
 
-        }
-    
-    
-    
-    
-    
-    
-    }
-
+        }    
 }
 //_________________________________________
 void shrink_image() {
