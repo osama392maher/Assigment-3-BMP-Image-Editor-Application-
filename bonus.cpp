@@ -158,22 +158,9 @@ void save_newImage() {
 
 //_________________________________________
 void black_and_white() {
-
-    long long sum = 0;
-
     for (int i = 0; i < SIZE; i++){
         for (int j = 0; j < SIZE; j++){
-            for (int k = 0; k < RGB; k++){
-                sum += image[i][j][k];
-            }
-        }
-    }
-
-    long long average = sum / (256 * 256 * 3);
-
-    for (int i = 0; i < SIZE; i++){
-        for (int j = 0; j < SIZE; j++){
-            if (image[i][j][0] + image[i][j][1] + image[i][j][2]  > average){
+            if (image[i][j][0] + image[i][j][1] + image[i][j][2]  >= 128 * 3){
                 image[i][j][0] = 255;
                 image[i][j][1] = 255;
                 image[i][j][2] = 255;

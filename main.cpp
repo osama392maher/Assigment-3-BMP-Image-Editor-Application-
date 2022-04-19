@@ -31,12 +31,9 @@ void rotate_image();
 void darken_and_lighten_image();
 void mirror_image();
 void enlarge_image();
-void Shuffle_Image();
-
-<<<<<<< HEAD
-
+void shrink_image();
 void detect_edges();
->>>>>>> ef3e4ebcad3db5adce5a9544af1a1f7985cc1e21
+void shuffle_image();
 
 int main()
 {
@@ -44,7 +41,7 @@ int main()
 
     cout << "  Helloo 😁" << endl;
     cout << "  Please select a filter to apply or 0 to exit:" << endl;
-    cout << "    1- Black & White Filter" << endl ;
+    cout << "    1- Black & White Filter" << endl;
     cout << "    2- Invert Filter" << endl;
     cout << "    3- Merge Filter" << endl;
     cout << "    4- Flip Image" << endl;
@@ -53,7 +50,8 @@ int main()
     cout << "    7- mirror " << endl;
     cout << "    8- detect image " << endl;
     cout << "    9- enlarge image " << endl;
-    cout << "    10-  Shuffle image";
+    cout << "    10- Shrink image " << endl;
+    cout << "    11- shuffle image " << endl;
     cout << "    0- exit" << endl;
 
     cin >> choice;
@@ -120,13 +118,19 @@ int main()
         enlarge_image();
         save_newImage();
     }
+
     else if (choice == 10)
     {
         loadImage();
-        Shuffle_Image();
+        shrink_image();
         save_newImage();
     }
-
+    else if (choice == 11)
+    {
+        loadImage();
+        shuffle_image();
+        save_newImage();
+    }
     else if (choice == 0)
     {
         return 0;
@@ -414,66 +418,53 @@ void mirror_image()
 
     switch (choice)
     {
-        case 1:
-            //Upper 1/2
-            for (int i = 0; i < SIZE / 2; i++)
-            {
-                copy(std::begin(image[i]), std::end(image[i]), std::begin(image[SIZE - i]));
-            }
-            break;
+    case 1:
+        //Upper 1/2
+        for (int i = 0; i < SIZE / 2; i++)
+        {
+            copy(std::begin(image[i]), std::end(image[i]), std::begin(image[SIZE - i]));
+        }
+        break;
 
-        case 2:
-            //lower 1/2
-            for (int i = 0; i < SIZE / 2; i++)
-            {
-                copy(std::begin(image[SIZE - i]), std::end(image[SIZE - i]), std::begin(image[i]));
-            }
-            break;
+    case 2:
+        //lower 1/2
+        for (int i = 0; i < SIZE / 2; i++)
+        {
+            copy(std::begin(image[SIZE - i]), std::end(image[SIZE - i]), std::begin(image[i]));
+        }
+        break;
 
-        case 3:
-            // Right 1/2
-            for (int i = 0; i < SIZE; i++)
+    case 3:
+        // Right 1/2
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE / 2; j++)
             {
-                for (int j = 0; j < SIZE / 2; j++)
-                {
-                    image[i][j] = image[i][SIZE - j];
-                }
+                image[i][j] = image[i][SIZE - j];
             }
-            break;
+        }
+        break;
 
-        case 4:
-            // left 1/2
-            for (int i = 0; i < SIZE; i++)
+    case 4:
+        // left 1/2
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE / 2; j++)
             {
-                for (int j = 0; j < SIZE / 2; j++)
-                {
-                    image[i][SIZE - j] = image[i][j];
-                }
+                image[i][SIZE - j] = image[i][j];
             }
-            break;
+        }
+        break;
     }
 
-
-<<<<<<< HEAD
-      case 4:
-      // left 1/2
-      for (int i = 0; i < SIZE; i++)
-      {
-        for (int j = 0; j < SIZE / 2; j++){
-          image[i][SIZE - j] = image[i][j];
-        }
-      }
-      break;
-  }
-
-
+}
 //_________________________________________
 void detect_edges()
 {
 
-    int gx_val[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
+    int gx_val[3][3] = { {-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1} };
 
-    int gy_val[3][3] = {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
+    int gy_val[3][3] = { {-1, -2, -1}, {0, 0, 0}, {1, 2, 1} };
 
     double gx, gy;
     int i_index = 0;
@@ -519,7 +510,7 @@ void detect_edges()
         for (int j = 0; j < SIZE; j++)
             if (new_image[i][j] != 255)
             {
-                new_image[i][j] = 0 ;
+                new_image[i][j] = 0;
             }
     }
 
@@ -534,81 +525,129 @@ void detect_edges()
             }
             else if (new_image[i][j] == 0)
             {
-                new_image[i][j] = 255 ;
+                new_image[i][j] = 255;
             }
         }
     }
-    void enlarge_image() {
-        int ii = 0, jj = 0;
-        for (int i = 0;i < SIZE;i += 2) {
+}
+//_________________________________________
+void enlarge_image() {
+    int ii = 0, jj = 0;
+    for (int i = 0;i < SIZE;i += 2) {
+        for (int j = 0; j < SIZE; j += 2) {
+            new_image[i][j] = image[ii][jj];
+            new_image[i][j + 1] = image[ii][jj];
+            new_image[i + 1][j] = image[ii][jj];
+            new_image[i + 1][j + 1] = image[ii][jj];
+            jj += 1;
+        }
+        jj = 0;
+        ii += 1;
+
+    }
+}
+//_________________________________________
+void shrink_image() {
+
+    int choice;
+    cout << "How do you want to shrink the photo?" << endl;
+    cout << "1- Shrink it to the half " << endl;
+    cout << "2- Shrink it to the third " << endl;
+    cout << "3- Shrink it to the quarter " << endl;
+    cin >> choice;
+
+    int k = 0, l = 0;
+
+    //shrink to 1/2
+    if (choice == 1) {
+        for (int i = 0; i < SIZE; i += 2) {
             for (int j = 0; j < SIZE; j += 2) {
-                new_image[i][j] = image[ii][jj];
-                new_image[i][j + 1] = image[ii][jj];
-                new_image[i + 1][j] = image[ii][jj];
-                new_image[i + 1][j + 1] = image[ii][jj];
-                jj += 1;
+                new_image[k][l] = image[i][j];
+                l++;
+            }
+            l = 0;
+            k++;
+        }
+    }
+    //shrink to 1/3
+    else if (choice == 2) {
+        for (int i = 0; i < SIZE; i += 3) {
+            for (int j = 0; j < SIZE; j += 3) {
+                new_image[k][l] = image[i][j];
+                l++;
+            }
+            l = 0;
+            k++;
+        }
+    }
+    //shrink to 1/4
+    else if (choice == 3) {
+        int k = 0, z = 0;
+        for (int i = 0; i < SIZE; i += 4) {
+            for (int j = 0; j < SIZE; j += 4) {
+                new_image[k][l] = image[i][j];
+                l++;
+            }
+
+            l = 0;
+            k++;
+        }
+    }
+}
+void shuffle_image() {
+    int part, i, j, ii, jj;
+
+    for (int times = 1;times < 5;times++) {
+        cout << "enter part " << times + 1 << endl;
+
+        if (times == 1) {
+            ii = 0;
+            jj = 0;
+        }
+
+        else if (times == 2) {
+            ii = 0;
+            jj = SIZE/2;
+        }
+        else if (times == 3) {
+            ii = 0;
+            jj = 0;
+        }
+        else if (times == 4) {
+            ii = SIZE/2;
+            jj = SIZE / 2;
+        }
+
+        cin >> part;
+        switch (part) {
+        case 1:
+            i = 0;
+            j = 0;
+            break;
+        case 2:
+            i = 0;
+            j = SIZE / 2;
+            break;
+
+        case 3:
+            i = SIZE / 2;
+            j = 0;
+            break;
+        case 4:
+            i = SIZE / 2;
+            j = SIZE / 2;
+            break;
+        default:
+            cout << "Invalid input";
+        }
+
+        for (int start = i;start < start + (SIZE / 2);start++) {
+            for (int secondStart = j;secondStart < j + (SIZE / 2);secondStart++) {
+                new_image[ii][jj] = image[start][secondStart];
+                jj++;
             }
             jj = 0;
-            ii += 1;
-
-        }
-    }
-    void Shuffle_Image() {
-        int part, i, j, ii, jj;
-
-        for (int times = 1; times < 5; times++) {
-
-            cout << "enter the part " << times << endl;
-            cin >> part;
-            switch (part) {
-            case 1:
-                i = 0;
-                j = 0;
-                break;
-            case 2:
-                i = 0;
-                j = SIZE / 2;
-                break;
-
-            case 3:
-                i = SIZE / 2;
-                j = 0;
-                break;
-            case 4:
-                i = SIZE / 2;
-                j = SIZE / 2;
-                break;
-            default:
-                cout << "Invalid input";
-            }
-
-            if (times == 1) {
-                ii = 0;
-                jj = 0;
-            }
-
-            else if (times == 2) {
-                ii = 0;
-                jj = SIZE / 2;
-            }
-            else if (times == 3) {
-                ii = SIZE / 2;
-                jj = 0;
-            }
-            else if (times == 4) {
-                ii = SIZE / 2;
-                jj = SIZE / 2;
-            }
-            int fixed_jj = jj;
-            for (int start = i; start < i + (SIZE / 2); start++) {
-                for (int secondStart = j; secondStart < j + (SIZE / 2); secondStart++) {
-                    new_image[ii][jj] = image[start][secondStart];
-                    jj++;
-                }
-                ii++;
-                jj = fixed_jj;
-            }
-
+            ii++;
         }
 
     }
