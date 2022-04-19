@@ -108,6 +108,9 @@ int main()
   else if (choice == 0){
     return 0;
   }
+  else{
+      cout << "Invalid Input";
+  }
 }
 
 //_________________________________________
