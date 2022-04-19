@@ -28,8 +28,8 @@ void invert_image();
 void flip_image();
 void mirror_image();
 void detect_edges();
-/*
 void merge_images();
+/*
 void rotate_image();
 void darken_and_lighten_image();
 */
@@ -62,14 +62,12 @@ int main()
     invert_image();
     saveImage();
   }
-/*
   else if (choice == 3){
     loadImage();
     loadImage2();
     merge_images();
     save_newImage();
   }
-*/
   else if (choice == 4){
     loadImage();
     flip_image();
@@ -187,17 +185,18 @@ void invert_image() {
     }
 }
 }
-/*
+
 //_________________________________________
 void merge_images() {
 
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            new_image[i][j] = (image[i][j] + image2[i][j]) / 2;
+            for (int k = 0 ; k < RGB; k++){
+              new_image[i][j][k] = (image[i][j][k] + image2[i][j][k]) / 2;
+            }
         }
     }
 }
-*/
 //_________________________________________
 void flip_image() {
   int choice;

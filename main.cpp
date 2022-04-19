@@ -597,26 +597,10 @@ void shrink_image() {
 void shuffle_image() {
     int part, i, j, ii, jj;
 
-    for (int times = 1;times < 5;times++) {
-        cout << "enter part " << times + 1 << endl;
+    for (int times = 1; times < 5; times++) {
 
-        if (times == 1) {
-            ii = 0;
-            jj = 0;
-        }
+        cout << "enter part " << times << endl;
 
-        else if (times == 2) {
-            ii = 0;
-            jj = SIZE/2;
-        }
-        else if (times == 3) {
-            ii = 0;
-            jj = 0;
-        }
-        else if (times == 4) {
-            ii = SIZE/2;
-            jj = SIZE / 2;
-        }
 
         cin >> part;
         switch (part) {
@@ -641,16 +625,32 @@ void shuffle_image() {
             cout << "Invalid input";
         }
 
-        for (int start = i;start < start + (SIZE / 2);start++) {
-            for (int secondStart = j;secondStart < j + (SIZE / 2);secondStart++) {
+        if (times == 1) {
+            ii = 0;
+            jj = 0;
+        }
+
+        else if (times == 2) {
+            ii = 0;
+            jj = SIZE / 2;
+        }
+        else if (times == 3) {
+            ii = SIZE / 2;
+            jj = 0;
+        }
+        else if (times == 4) {
+            ii = SIZE / 2;
+            jj = SIZE / 2;
+        }
+        int fixed_jj = jj;
+        for (int start = i; start < i + (SIZE / 2); start++) {
+            for (int secondStart = j; secondStart < j + (SIZE / 2); secondStart++) {
                 new_image[ii][jj] = image[start][secondStart];
                 jj++;
             }
-            jj = 0;
             ii++;
+            jj = fixed_jj;
         }
 
     }
-
-
 }
