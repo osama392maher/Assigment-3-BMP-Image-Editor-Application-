@@ -29,9 +29,11 @@ void flip_image();
 void mirror_image();
 void merge_images();
 void detect_edges();
-//void rotate_image();
+void rotate_image();
 void darken_and_lighten_image();
 void shrink_image();
+void enlarge_image();
+void shuffle_image();
 
 int main()
 {
@@ -47,7 +49,9 @@ int main()
   cout <<"    6- Darken and Lighten Image" << endl;
   cout <<"    7- mirror " << endl;
   cout <<"    8- detect image " << endl;
-  cout << "   9- Shrink image " << endl;
+  cout <<"    9- Shrink image " << endl;
+  cout <<"    10- enlarge image " << endl;
+  cout <<"    11- shuffle image " << endl;
   cout <<"    0- exit" << endl;
 
   cin >> choice;
@@ -74,14 +78,11 @@ int main()
     flip_image();
     saveImage();
   }
-/*
-
   else if (choice == 5){
     loadImage();
     rotate_image();
     saveImage();
   }
-  */
   else if (choice == 6){
     loadImage();
     darken_and_lighten_image();
@@ -105,6 +106,18 @@ int main()
       shrink_image();
       save_newImage();
   }
+    else if (choice == 10) {
+      loadImage();
+    enlarge_image();
+      save_newImage();
+  }
+  
+    else if (choice == 11) {
+      loadImage();
+    shuffle_image();
+      save_newImage();
+  }
+  
   else if (choice == 0){
     return 0;
   }
@@ -238,7 +251,6 @@ void flip_image() {
     
   }
 }
-/*
 //_________________________________________
 void rotate_image() {
 
@@ -257,9 +269,11 @@ void rotate_image() {
         {
             for (int j = i; j < SIZE; j++) {
                 if (i != j) {
-                    int temp = image[i][j];
-                    image[i][j] = image[j][i];
-                    image[j][i] = temp;
+                    for (int k = 0;k < RGB;k++) {
+                        int temp = image[i][j][k];
+                        image[i][j][k] = image[j][i][k];
+                        image[j][i][k] = temp;
+                    }
                 }
             }
         }
@@ -267,10 +281,11 @@ void rotate_image() {
         for (int i = 0; i < SIZE; i++)
         {
             for (int j = 0; j < SIZE / 2; j++) {
-
-                    int temp = image[i][j];
-                    image[i][j] = image[i][SIZE-j-1];
-                    image[i][SIZE-j-1] = temp;
+                for (int k = 0;k < RGB;k++) {
+                    int temp = image[i][j][k];
+                    image[i][j][k] = image[i][SIZE - j - 1][k];
+                    image[i][SIZE - j - 1][k] = temp;
+                }
                 }
             }
     }
@@ -281,10 +296,11 @@ void rotate_image() {
         for (int i = 0; i < SIZE/2; i++)
         {
             for (int j = 0; j < SIZE; j++) {
-    
-                int temp = image[i][j];
-                image[i][j] = image[SIZE-i-1][j];
-                image[SIZE-i-1][j] = temp;
+                for (int k = 0;k < RGB;k++) {
+                    int temp = image[i][j][k];
+                    image[i][j][k] = image[SIZE - i - 1][j][k];
+                    image[SIZE - i - 1][j][k] = temp;
+                }
             }
         }
     }
@@ -297,9 +313,11 @@ void rotate_image() {
             for (int j = i; j < SIZE; j++) {
                 
                 if (i != j) {
-                    int temp = image[i][j];
-                    image[i][j] = image[j][i];
-                    image[j][i] = temp;
+                    for (int k = 0;k < RGB;k++) {
+                        int temp = image[i][j][k];
+                        image[i][j][k] = image[j][i][k];
+                        image[j][i][k] = temp;
+                    }
                 }
             }
         }
@@ -307,7 +325,6 @@ void rotate_image() {
     }
 
 }
-*/
 //_________________________________________
 void darken_and_lighten_image() {
 
@@ -534,4 +551,137 @@ void shrink_image() {
         }
     }
 
+}
+void enlarge_image() {
+    int part;
+    cout << "please enter the part you want to enlarge: ";
+    cin >> part;
+    if (part == 1) {
+        int ii = 0, jj = 0;
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                for (int k = 0;k < RGB;k++) {
+                    new_image[i][j][k] = image[ii][jj][k];
+                    new_image[i][j + 1][k] = image[ii][jj][k];
+                    new_image[i + 1][j][k] = image[ii][jj][k];
+                    new_image[i + 1][j + 1][k] = image[ii][jj][k];
+                }
+                jj += 1;
+            }
+            jj = 0;
+            ii += 1;
+        }
+    }
+    else if (part == 2) {
+        int ii = 0, jj = SIZE / 2;
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                for (int k = 0;k < RGB;k++) {
+                    new_image[i][j][k] = image[ii][jj][k];
+                    new_image[i][j + 1][k] = image[ii][jj][k];
+                    new_image[i + 1][j][k] = image[ii][jj][k];
+                    new_image[i + 1][j + 1][k] = image[ii][jj][k];
+                }
+                jj += 1;
+            }
+            jj = SIZE / 2;
+            ii += 1;
+        }
+    }
+    else if (part == 3) {
+        int ii = SIZE / 2, jj = 0;
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                for (int k = 0;k < RGB;k++) {
+                    new_image[i][j][k] = image[ii][jj][k];
+                    new_image[i][j + 1][k] = image[ii][jj][k];
+                    new_image[i + 1][j][k] = image[ii][jj][k];
+                    new_image[i + 1][j + 1][k] = image[ii][jj][k];
+                }
+                jj += 1;
+            }
+            jj = 0;
+            ii += 1;
+        }
+    }
+    else if (part == 4) {
+        int ii = SIZE / 2, jj = SIZE / 2;
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                for (int k = 0;k < RGB;k++) {
+                    new_image[i][j][k] = image[ii][jj][k];
+                    new_image[i][j + 1][k] = image[ii][jj][k];
+                    new_image[i + 1][j][k] = image[ii][jj][k];
+                    new_image[i + 1][j + 1][k] = image[ii][jj][k];
+                }
+                jj += 1;
+            }
+            jj = SIZE / 2;
+            ii += 1;
+        }
+    }
+    else
+    {
+        cout << "sorry,invalid";
+    }
+}
+void shuffle_image() {
+    int part, i, j, ii, jj;
+
+    for (int times = 1; times < 5; times++) {
+
+        cout << "enter part " << times << endl;
+        cin >> part;
+        switch (part) {
+        case 1:
+            i = 0;
+            j = 0;
+            break;
+        case 2:
+            i = 0;
+            j = SIZE / 2;
+            break;
+
+        case 3:
+            i = SIZE / 2;
+            j = 0;
+            break;
+        case 4:
+            i = SIZE / 2;
+            j = SIZE / 2;
+            break;
+        default:
+            cout << "Invalid input";
+        }
+
+        if (times == 1) {
+            ii = 0;
+            jj = 0;
+        }
+
+        else if (times == 2) {
+            ii = 0;
+            jj = SIZE / 2;
+        }
+        else if (times == 3) {
+            ii = SIZE / 2;
+            jj = 0;
+        }
+        else if (times == 4) {
+            ii = SIZE / 2;
+            jj = SIZE / 2;
+        }
+        int fixed_jj = jj;
+        for (int start = i; start < i + (SIZE / 2); start++) {
+            for (int secondStart = j; secondStart < j + (SIZE / 2); secondStart++) {
+                for (int k = 0;k < RGB;k++) {
+                    new_image[ii][jj][k] = image[start][secondStart][k];
+                }
+                jj++;
+            }
+            ii++;
+            jj = fixed_jj;
+        }
+
+    }
 }
