@@ -27,8 +27,8 @@ void black_and_white();
 void invert_image();
 void flip_image();
 void mirror_image();
-void detect_edges();
 void merge_images();
+void detect_edges();
 /*
 void rotate_image();
 void darken_and_lighten_image();
