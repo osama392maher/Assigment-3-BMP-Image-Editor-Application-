@@ -29,10 +29,9 @@ void flip_image();
 void mirror_image();
 void merge_images();
 void detect_edges();
-/*
-void rotate_image();
+//void rotate_image();
 void darken_and_lighten_image();
-*/
+
 int main()
 {
   int choice;
@@ -80,13 +79,13 @@ int main()
     rotate_image();
     saveImage();
   }
-
+  */
   else if (choice == 6){
     loadImage();
     darken_and_lighten_image();
     saveImage();
   }
-*/
+
   else if (choice == 7){
     loadImage();
     mirror_image();
@@ -296,7 +295,7 @@ void rotate_image() {
     }
 
 }
-
+*/
 //_________________________________________
 void darken_and_lighten_image() {
 
@@ -310,7 +309,9 @@ void darken_and_lighten_image() {
 	if (choice == 1) {
 		for (int i = 0; i < SIZE; i++) {
 			for (int j = 0; j < SIZE; j++) {
-				image[i][j] = ((image[i][j])+255)/2;
+                for (int k = 0; k < RGB; k++) {
+                    image[i][j][k] = ((image[i][j][k]) + 255) / 2;
+                }
 			}
 
 		}
@@ -319,15 +320,15 @@ void darken_and_lighten_image() {
 	if (choice == 2) {
 		for (int i = 0; i < SIZE; i++) {
 			for (int j = 0; j < SIZE; j++) {
-				image[i][j] = (image[i][j])/2;
-
-
+                for (int k = 0; k < RGB; k++) {
+                    image[i][j][k] = (image[i][j][k]) / 2;
+                }
 			}
 		}
 	}
 
 }
-*/
+
 //_________________________________________
 void mirror_image(){
 
