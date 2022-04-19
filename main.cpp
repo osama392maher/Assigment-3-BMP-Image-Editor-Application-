@@ -31,6 +31,8 @@ void rotate_image();
 void darken_and_lighten_image();
 void mirror_image();
 void enlarge_image();
+void Shuffle_Image();
+
 <<<<<<< HEAD
 
 void detect_edges();
@@ -51,6 +53,7 @@ int main()
     cout << "    7- mirror " << endl;
     cout << "    8- detect image " << endl;
     cout << "    9- enlarge image " << endl;
+    cout << "    10-  Shuffle image";
     cout << "    0- exit" << endl;
 
     cin >> choice;
@@ -117,6 +120,13 @@ int main()
         enlarge_image();
         save_newImage();
     }
+    else if (choice == 10)
+    {
+        loadImage();
+        Shuffle_Image();
+        save_newImage();
+    }
+
     else if (choice == 0)
     {
         return 0;
@@ -542,12 +552,66 @@ void detect_edges()
             ii += 1;
 
         }
-    
-    
-    
-    
-    
-    
     }
+    void Shuffle_Image() {
+        int part, i, j, ii, jj;
+
+        for (int times = 1; times < 5; times++) {
+
+            cout << "enter the part " << times << endl;
+            cin >> part;
+            switch (part) {
+            case 1:
+                i = 0;
+                j = 0;
+                break;
+            case 2:
+                i = 0;
+                j = SIZE / 2;
+                break;
+
+            case 3:
+                i = SIZE / 2;
+                j = 0;
+                break;
+            case 4:
+                i = SIZE / 2;
+                j = SIZE / 2;
+                break;
+            default:
+                cout << "Invalid input";
+            }
+
+            if (times == 1) {
+                ii = 0;
+                jj = 0;
+            }
+
+            else if (times == 2) {
+                ii = 0;
+                jj = SIZE / 2;
+            }
+            else if (times == 3) {
+                ii = SIZE / 2;
+                jj = 0;
+            }
+            else if (times == 4) {
+                ii = SIZE / 2;
+                jj = SIZE / 2;
+            }
+            int fixed_jj = jj;
+            for (int start = i; start < i + (SIZE / 2); start++) {
+                for (int secondStart = j; secondStart < j + (SIZE / 2); secondStart++) {
+                    new_image[ii][jj] = image[start][secondStart];
+                    jj++;
+                }
+                ii++;
+                jj = fixed_jj;
+            }
+
+        }
+
+    }
+
 
 }
