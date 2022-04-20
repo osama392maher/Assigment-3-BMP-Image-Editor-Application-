@@ -52,6 +52,7 @@ int main()
     cout << "    9- enlarge image " << endl;
     cout << "    10- Shrink image " << endl;
     cout << "    11- shuffle image " << endl;
+    cout << "    12- Blur image " << endl;
     cout << "    0- exit" << endl;
 
     cin >> choice;
