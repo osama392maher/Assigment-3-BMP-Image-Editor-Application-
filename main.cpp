@@ -34,6 +34,7 @@ void enlarge_image();
 void shrink_image();
 void detect_edges();
 void shuffle_image();
+void blur_image();
 
 int main()
 {
@@ -131,6 +132,12 @@ int main()
         loadImage();
         shuffle_image();
         save_newImage();
+    }
+    else if (choice == 12)
+    {
+        loadImage();
+        blur_image();
+        saveImage();
     }
     else if (choice == 0)
     {
@@ -706,5 +713,28 @@ void shuffle_image() {
             jj = fixed_jj;
         }
 
+    }
+}
+//_________________________________________
+void blur_image() {
+   
+    long long sum = 0;
+    long long average = 0;
+    
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            
+            sum = (image[i][j] + image[i + 1][j + 1] + image[i + 2][j + 2] + image[i + 3][j + 3] + image[i + 4][j + 4] + image[i + 5][j + 5] + image[i + 6][j + 6] +
+                image[i][j + 6] + image[i + 1][j + 5] + image[i + 2][j + 4] + image[i + 4][j + 2] + image[i + 5][j + 1] + image[i + 6][j] +
+                image[i + 3][j] + image[i + 3][j + 1] + image[i + 3][j + 2] + image[i + 3][j + 4] + image[i + 3][j + 5] + image[i + 3][j + 6] +
+                image[i][j + 3] + image[i + 1][j + 3] + image[i + 2][j + 3] + image[i + 4][j + 3] + image[i + 5][j + 3] + image[i + 6][j + 3]);
+            average = sum / 25;
+            image[i + 3][j + 3] = average;
+
+            sum = (image[i][j + 1] + image[i][j - 1] + image[i + 1][j + 1] + image[i + 1][j - 1] + image[i + 1][j + 2] + image[i - 1][j - 2] + image[i - 1][j] + image[i][j - 1]);
+            average = sum / 8;
+            image[i][j] = average;
+
+        }
     }
 }
