@@ -532,6 +532,10 @@ void detect_edges()
 }
 //_________________________________________
 void enlarge_image() {
+    int pare;
+    cout << "please enter the part you want to enlarge: ";
+    cin >> part;
+    if (part==1){
     int ii = 0, jj = 0;
     for (int i = 0;i < SIZE;i += 2) {
         for (int j = 0; j < SIZE; j += 2) {
@@ -543,8 +547,55 @@ void enlarge_image() {
         }
         jj = 0;
         ii += 1;
-
     }
+    }
+    else if (part == 2) {
+        int ii = 0, jj = SIZE/2;
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                new_image[i][j] = image[ii][jj];
+                new_image[i][j + 1] = image[ii][jj];
+                new_image[i + 1][j] = image[ii][jj];
+                new_image[i + 1][j + 1] = image[ii][jj];
+                jj += 1;
+            }
+            jj = SIZE/2;
+            ii += 1;
+        }
+    }
+    else if (part == 3) {
+        int ii = SIZE / 2, jj = 0;
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                new_image[i][j] = image[ii][jj];
+                new_image[i][j + 1] = image[ii][jj];
+                new_image[i + 1][j] = image[ii][jj];
+                new_image[i + 1][j + 1] = image[ii][jj];
+                jj += 1;
+            }
+            jj = 0;
+            ii += 1;
+        }
+    }
+    else if (part == 4) {
+        int ii = SIZE / 2, jj = SIZE / 2;
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                new_image[i][j] = image[ii][jj];
+                new_image[i][j + 1] = image[ii][jj];
+                new_image[i + 1][j] = image[ii][jj];
+                new_image[i + 1][j + 1] = image[ii][jj];
+                jj += 1;
+            }
+            jj = SIZE / 2;
+            ii += 1;
+        }
+    }
+    else
+    {
+        cout<<"sorry,invalide "
+    }
+
 }
 //_________________________________________
 void shrink_image() {
@@ -600,8 +651,6 @@ void shuffle_image() {
     for (int times = 1; times < 5; times++) {
 
         cout << "enter part " << times << endl;
-
-
         cin >> part;
         switch (part) {
         case 1:
