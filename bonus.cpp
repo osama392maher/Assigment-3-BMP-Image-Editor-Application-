@@ -27,12 +27,12 @@ void black_and_white();
 void invert_image();
 void flip_image();
 void mirror_image();
-void detect_edges();
-/*
 void merge_images();
-void rotate_image();
+void detect_edges();
+//void rotate_image();
 void darken_and_lighten_image();
-*/
+void shrink_image();
+
 int main()
 {
   int choice;
@@ -47,6 +47,7 @@ int main()
   cout <<"    6- Darken and Lighten Image" << endl;
   cout <<"    7- mirror " << endl;
   cout <<"    8- detect image " << endl;
+  cout << "   9- Shrink image " << endl;
   cout <<"    0- exit" << endl;
 
   cin >> choice;
@@ -62,14 +63,12 @@ int main()
     invert_image();
     saveImage();
   }
-/*
   else if (choice == 3){
     loadImage();
     loadImage2();
     merge_images();
     save_newImage();
   }
-*/
   else if (choice == 4){
     loadImage();
     flip_image();
@@ -82,22 +81,29 @@ int main()
     rotate_image();
     saveImage();
   }
-
+  */
   else if (choice == 6){
     loadImage();
     darken_and_lighten_image();
     saveImage();
   }
-*/
+
   else if (choice == 7){
     loadImage();
     mirror_image();
     saveImage();
   }
+
   else if (choice == 8){
     loadImage();
     detect_edges();
     save_newImage();
+  }
+
+  else if (choice == 9) {
+      loadImage();
+      shrink_image();
+      save_newImage();
   }
   else if (choice == 0){
     return 0;
@@ -187,17 +193,18 @@ void invert_image() {
     }
 }
 }
-/*
+
 //_________________________________________
 void merge_images() {
 
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            new_image[i][j] = (image[i][j] + image2[i][j]) / 2;
+            for (int k = 0 ; k < RGB; k++){
+              new_image[i][j][k] = (image[i][j][k] + image2[i][j][k]) / 2;
+            }
         }
     }
 }
-*/
 //_________________________________________
 void flip_image() {
   int choice;
@@ -297,7 +304,7 @@ void rotate_image() {
     }
 
 }
-
+*/
 //_________________________________________
 void darken_and_lighten_image() {
 
@@ -311,7 +318,9 @@ void darken_and_lighten_image() {
 	if (choice == 1) {
 		for (int i = 0; i < SIZE; i++) {
 			for (int j = 0; j < SIZE; j++) {
-				image[i][j] = ((image[i][j])+255)/2;
+                for (int k = 0; k < RGB; k++) {
+                    image[i][j][k] = ((image[i][j][k]) + 255) / 2;
+                }
 			}
 
 		}
@@ -320,15 +329,15 @@ void darken_and_lighten_image() {
 	if (choice == 2) {
 		for (int i = 0; i < SIZE; i++) {
 			for (int j = 0; j < SIZE; j++) {
-				image[i][j] = (image[i][j])/2;
-
-
+                for (int k = 0; k < RGB; k++) {
+                    image[i][j][k] = (image[i][j][k]) / 2;
+                }
 			}
 		}
 	}
 
 }
-*/
+
 //_________________________________________
 void mirror_image(){
 
@@ -457,4 +466,69 @@ for (int i = 0; i < SIZE; i++){
         new_image[i][j][2] = blue_val;
     }
 }
+}
+
+//_________________________________________
+void shrink_image() {
+
+    int choice;
+    cout << "How do you want to shrink the photo?" << endl;
+    cout << "1- Shrink it to the half " << endl;
+    cout << "2- Shrink it to the third " << endl;
+    cout << "3- Shrink it to the quarter " << endl;
+    cin >> choice;
+
+    int m = 0, z = 0, l = 0;
+
+    if (choice == 1) {
+        for (int i = 0; i < SIZE; i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+                for (int k = 0; k < RGB; k++) {
+                    new_image[m][z][l] = image[i][j][k];
+                    l++;
+                }
+                l = 0;
+                z++;
+            }
+            l = 0;
+            z = 0;
+            m++;
+        }
+    }
+
+    else if (choice == 2) {
+        for (int i = 0; i < SIZE; i += 3) {
+            for (int j = 0; j < SIZE; j += 3) {
+                for (int k = 0; k < RGB; k++) {
+                    new_image[m][z][l] = image[i][j][k];
+                    l++;
+                }
+
+                l = 0;
+                z++;
+            }
+            l = 0;
+            z = 0;
+            m++;
+        }
+    }
+
+    else if (choice == 3) {
+        int m = 0, z = 0;
+        for (int i = 0; i < SIZE; i += 4) {
+            for (int j = 0; j < SIZE; j += 4) {
+                for (int k = 0; k < RGB; k++) {
+                    new_image[m][z][l] = image[i][j][k];
+                    l++;
+                }
+
+                l = 0;
+                z++;
+            }
+            l = 0;
+            z = 0;
+            m++;
+        }
+    }
+
 }
