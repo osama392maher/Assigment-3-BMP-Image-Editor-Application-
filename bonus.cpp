@@ -34,6 +34,7 @@ void darken_and_lighten_image();
 void shrink_image();
 void enlarge_image();
 void shuffle_image();
+void blur_image();
 
 int main()
 {
@@ -52,6 +53,7 @@ int main()
   cout <<"    9- Shrink image " << endl;
   cout <<"    10- enlarge image " << endl;
   cout <<"    11- shuffle image " << endl;
+  cout << "   12- Blur image " << endl;
   cout <<"    0- exit" << endl;
 
   cin >> choice;
@@ -117,9 +119,15 @@ int main()
     shuffle_image();
       save_newImage();
   }
+
+    else if (choice == 12) {
+      loadImage();
+      blur_image();
+      saveImage();
+  }
   
-  else if (choice == 0){
-    return 0;
+    else if (choice == 0){
+     return 0;
   }
   else{
       cout << "Invalid Input";
@@ -552,6 +560,7 @@ void shrink_image() {
     }
 
 }
+//_________________________________________
 void enlarge_image() {
     int part;
     cout << "please enter the part you want to enlarge: ";
@@ -625,6 +634,7 @@ void enlarge_image() {
         cout << "sorry,invalid";
     }
 }
+//_________________________________________
 void shuffle_image() {
     int part, i, j, ii, jj;
 
@@ -684,4 +694,30 @@ void shuffle_image() {
         }
 
     }
+}
+
+//_________________________________________
+void blur_image() {
+    long long sum = 0;
+    long long average = 0;
+   
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            for (int k = 0; k < RGB; k++) {
+              
+                sum = (image[i][j][k] + image[i + 1][j + 1][k] + image[i + 2][j + 2][k]
+                    + image[i + 3][j + 3][k] + image[i + 4][j + 4][k] + image[i + 5][j + 5][k] + image[i + 6][j + 6][k]
+                    + image[i][j + 6][k] + image[i + 1][j + 5][k] + image[i + 2][j + 4][k]
+                    + image[i + 4][j + 2][k] + image[i + 5][j + 1][k] + image[i + 6][j][k]
+                    + image[i][j + 3][k] + image[i + 1][j + 3][k] + image[i + 2][j + 3][k]
+                    + image[i + 4][j + 3][k] + image[i + 5][j + 3][k] + image[i + 6][j + 3][k]
+                    + image[i + 3][j][k] + image[i + 3][j + 1][k] + image[i + 3][j + 2][k]
+                    + image[i + 3][j + 4][k] + image[i + 3][j + 5][k] + image[i + 3][j + 6][k]);
+                average = sum / 25;
+               
+                image[i + 3][j + 3][k] = average;
+            }
+        }
+    }
+
 }
