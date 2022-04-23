@@ -19,6 +19,7 @@ unsigned char image[SIZE][SIZE];
 unsigned char image2[SIZE][SIZE];
 unsigned char new_image[SIZE][SIZE];
 
+//the basic functions
 void loadImage();
 void loadImage2();
 void saveImage();
@@ -38,6 +39,7 @@ void blur_image();
 
 int main()
 {
+    //ask the user what filter he wants to apply
     int choice;
     while (true){
         cout << "  Helloo 😁" << endl;
@@ -399,6 +401,7 @@ void darken_and_lighten_image()
         {
             for (int j = 0; j < SIZE; j++)
             {
+                // add 255 to each pixel then divide it by 2 to lighten the image by 50%
                 image[i][j] = ((image[i][j]) + 255) / 2;
             }
 
@@ -411,6 +414,7 @@ void darken_and_lighten_image()
         {
             for (int j = 0; j < SIZE; j++)
             {
+                // divide each pixel by 2 to darken the image by 50%
                 image[i][j] = (image[i][j]) / 2;
 
 
@@ -564,11 +568,13 @@ void enlarge_image() {
     cout << "please enter the part you want to enlarge: ";
     cin >> part;
     
-    // enlarge part 1
+    // enlarge part 1                                            
     if (part==1){
-    int ii = 0, jj = 0;
-        for (int i = 0;i < SIZE;i += 2) {
-            for (int j = 0; j < SIZE; j += 2) {
+    int ii = 0, jj = 0;                              //(ii)  is number of rows in the original image 
+        for (int i = 0;i < SIZE;i += 2) {            //(jj)  is number of columns in the original image
+                                                     //(i)   is number of rows in the new image
+                                                     //(j)   is number of columns in the new image
+            for (int j = 0; j < SIZE; j += 2) {       
 
                 new_image[i][j] = image[ii][jj];
                 new_image[i][j + 1] = image[ii][jj];
@@ -659,6 +665,8 @@ void shrink_image() {
     if (choice == 1) {
         for (int i = 0; i < SIZE; i += 2) {
             for (int j = 0; j < SIZE; j += 2) {
+
+                //store the pixels in the half of the image's original dimensions 
                 new_image[k][l] = image[i][j];
                 l++;
             }
@@ -671,6 +679,8 @@ void shrink_image() {
     else if (choice == 2) {
         for (int i = 0; i < SIZE; i += 3) {
             for (int j = 0; j < SIZE; j += 3) {
+
+                //store the pixels in the third of the image's original dimensions 
                 new_image[k][l] = image[i][j];
                 l++;
             }
@@ -683,6 +693,8 @@ void shrink_image() {
         int k = 0, z = 0;
         for (int i = 0; i < SIZE; i += 4) {
             for (int j = 0; j < SIZE; j += 4) {
+
+                //store the pixels in the quarter of the image's original dimensions 
                 new_image[k][l] = image[i][j];
                 l++;
             }
@@ -698,9 +710,12 @@ void shuffle_image() {
     int part, i, j, ii, jj;
 
     for (int times = 1; times < 5; times++) {
-
+       
+        //take the quarter from the user
         cout << "enter part " << times << endl;
         cin >> part;
+
+        //initializing the start of quarter
         switch (part) {
         case 1:
             i = 0;
@@ -723,24 +738,31 @@ void shuffle_image() {
             cout << "Invalid input";
         }
 
+        // for the first quarter
         if (times == 1) {
             ii = 0;
             jj = 0;
         }
 
+        // for the second quarter
         else if (times == 2) {
             ii = 0;
             jj = SIZE / 2;
         }
+
+        // for the third quarter
         else if (times == 3) {
             ii = SIZE / 2;
             jj = 0;
         }
+
+        // for the fourth quarter
         else if (times == 4) {
             ii = SIZE / 2;
             jj = SIZE / 2;
         }
         int fixed_jj = jj;
+        // filling quarters
         for (int start = i; start < i + (SIZE / 2); start++) {
             for (int secondStart = j; secondStart < j + (SIZE / 2); secondStart++) {
                 new_image[ii][jj] = image[start][secondStart];
@@ -761,7 +783,9 @@ void blur_image() {
     
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            // calulate the sum of the pixels in the same row, column and diagonal
+
+            //calulate the sum of the pixels in the same row, column and diagonal
+            
             sum = (image[i][j] + image[i + 1][j + 1] + image[i + 2][j + 2] + image[i + 3][j + 3] + image[i + 4][j + 4] + image[i + 5][j + 5] + image[i + 6][j + 6] +
                 image[i][j + 6] + image[i + 1][j + 5] + image[i + 2][j + 4] + image[i + 4][j + 2] + image[i + 5][j + 1] + image[i + 6][j] +
                 image[i + 3][j] + image[i + 3][j + 1] + image[i + 3][j + 2] + image[i + 3][j + 4] + image[i + 3][j + 5] + image[i + 3][j + 6] +
@@ -769,6 +793,8 @@ void blur_image() {
            
             //calculate the average of the pixels
             average = sum / 25;
+
+            //the pixel in the middle equal to the average
             image[i + 3][j + 3] = average;
 
             //blur the parties of the image
