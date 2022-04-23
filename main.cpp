@@ -385,7 +385,7 @@ void rotate_image()
 //_________________________________________
 void darken_and_lighten_image()
 {
-    //ask the user if he want to lighten the image for darken it
+    //ask the user if he want to lighten the image or darken it
     int choice;
     cout << "What you want to do in the image?" << endl;
     cout << "1- Lighten the image" << endl;
@@ -761,14 +761,17 @@ void blur_image() {
     
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            
+            // calulate the sum of the pixels in the same row, column and diagonal
             sum = (image[i][j] + image[i + 1][j + 1] + image[i + 2][j + 2] + image[i + 3][j + 3] + image[i + 4][j + 4] + image[i + 5][j + 5] + image[i + 6][j + 6] +
                 image[i][j + 6] + image[i + 1][j + 5] + image[i + 2][j + 4] + image[i + 4][j + 2] + image[i + 5][j + 1] + image[i + 6][j] +
                 image[i + 3][j] + image[i + 3][j + 1] + image[i + 3][j + 2] + image[i + 3][j + 4] + image[i + 3][j + 5] + image[i + 3][j + 6] +
                 image[i][j + 3] + image[i + 1][j + 3] + image[i + 2][j + 3] + image[i + 4][j + 3] + image[i + 5][j + 3] + image[i + 6][j + 3]);
+           
+            //calculate the average of the pixels
             average = sum / 25;
             image[i + 3][j + 3] = average;
 
+            //blur the parties of the image
             sum = (image[i][j + 1] + image[i][j - 1] + image[i + 1][j + 1] + image[i + 1][j - 1] + image[i + 1][j + 2] + image[i - 1][j - 2] + image[i - 1][j] + image[i][j - 1]);
             average = sum / 8;
             image[i][j] = average;
