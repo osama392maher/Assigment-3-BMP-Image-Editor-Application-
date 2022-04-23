@@ -294,8 +294,8 @@ void rotate_image() {
                     image[i][j][k] = image[i][SIZE - j - 1][k];
                     image[i][SIZE - j - 1][k] = temp;
                 }
-                }
             }
+        }
     }
 
     if (choice == 2) {
@@ -639,9 +639,11 @@ void shuffle_image() {
     int part, i, j, ii, jj;
 
     for (int times = 1; times < 5; times++) {
-
+        
+        // asking the user for the order
         cout << "enter part " << times << endl;
         cin >> part;
+      
         switch (part) {
         case 1:
             i = 0;
@@ -704,7 +706,8 @@ void blur_image() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             for (int k = 0; k < RGB; k++) {
-              
+
+                //getting the average of pixels
                 sum = (image[i][j][k] + image[i + 1][j + 1][k] + image[i + 2][j + 2][k]
                     + image[i + 3][j + 3][k] + image[i + 4][j + 4][k] + image[i + 5][j + 5][k] + image[i + 6][j + 6][k]
                     + image[i][j + 6][k] + image[i + 1][j + 5][k] + image[i + 2][j + 4][k]

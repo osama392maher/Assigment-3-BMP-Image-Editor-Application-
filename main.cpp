@@ -208,9 +208,10 @@ void save_newImage()
 //_________________________________________
 void black_and_white()
 {
-
+    //creating sum variable
     long long sum = 0;
 
+    //get the average of all pixles
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -220,12 +221,15 @@ void black_and_white()
         }
     }
 
+    //creating the average varible and calucalte it
     long long average = sum / (256 * 256);
 
+    //comapare every pixel to the average
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
         {
+            // if pixel is above average then be white else black
             if (image[i][j] > average)
             {
                 image[i][j] = 255;
@@ -242,7 +246,7 @@ void black_and_white()
 //_________________________________________
 void invert_image()
 {
-
+    //go to every pixel and substract 255 from it
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -256,11 +260,11 @@ void invert_image()
 //_________________________________________
 void merge_images()
 {
-
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
         {
+            //get the average of the corresponding pixels in the two images and get the average and store it in new image
             new_image[i][j] = (image[i][j] + image2[i][j]) / 2;
         }
     }
@@ -269,6 +273,7 @@ void merge_images()
 //_________________________________________
 void flip_image()
 {
+    //ask the user how he want to filp the image
     int choice;
     cout << "How do you want to flip the image? 😌" << endl;
     cout << "1- Horizontally" << endl;
@@ -304,6 +309,7 @@ void rotate_image()
 
     int choice;
 
+    //ask the user how he want to rotate the image
     cout << "How do you want to rotate the image? 😌" << endl;
     cout << "1- To rotate the image clockwise by 90 " << endl;
     cout << "2- To rotate the image clockwise by 180 " << endl;
@@ -379,7 +385,7 @@ void rotate_image()
 //_________________________________________
 void darken_and_lighten_image()
 {
-
+    //ask the user if he want to lighten the image for darken it
     int choice;
     cout << "What you want to do in the image?" << endl;
     cout << "1- Lighten the image" << endl;
@@ -420,6 +426,7 @@ void mirror_image()
 
     int choice;
 
+    //ask the user how he want to mirror the image
     cout << "how do you want to mirror the image ?" << endl;
     cout << "1- lower 1/2" << endl;
     cout << "2- Upper 1/2" << endl;
@@ -470,10 +477,11 @@ void mirror_image()
     }
 
 }
+
 //_________________________________________
 void detect_edges()
 {
-
+    //create gx and gy matrixs
     int gx_val[3][3] = { {-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1} };
 
     int gy_val[3][3] = { {-1, -2, -1}, {0, 0, 0}, {1, 2, 1} };
@@ -483,6 +491,7 @@ void detect_edges()
     int j_index = 0;
     int pixel_val;
 
+    //get the gx/gy sum
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -506,8 +515,10 @@ void detect_edges()
                 }
             }
 
+            //calculate the square root 
             pixel_val = round(sqrt((gx * gx) + (gy * gy)));
 
+            //see if the pixel value is greater than 255
             if (pixel_val > 255)
             {
                 pixel_val = 255;
@@ -517,6 +528,7 @@ void detect_edges()
         }
     }
 
+    // black every non white pixel
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -526,6 +538,7 @@ void detect_edges()
             }
     }
 
+    //invert the image 
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -542,43 +555,21 @@ void detect_edges()
         }
     }
 }
+
 //_________________________________________
 void enlarge_image() {
+    
+    // see which part user want to enlarge
     int part;
     cout << "please enter the part you want to enlarge: ";
     cin >> part;
+    
+    // enlarge part 1
     if (part==1){
     int ii = 0, jj = 0;
-    for (int i = 0;i < SIZE;i += 2) {
-        for (int j = 0; j < SIZE; j += 2) {
-            new_image[i][j] = image[ii][jj];
-            new_image[i][j + 1] = image[ii][jj];
-            new_image[i + 1][j] = image[ii][jj];
-            new_image[i + 1][j + 1] = image[ii][jj];
-            jj += 1;
-        }
-        jj = 0;
-        ii += 1;
-    }
-    }
-    else if (part == 2) {
-        int ii = 0, jj = SIZE/2;
         for (int i = 0;i < SIZE;i += 2) {
             for (int j = 0; j < SIZE; j += 2) {
-                new_image[i][j] = image[ii][jj];
-                new_image[i][j + 1] = image[ii][jj];
-                new_image[i + 1][j] = image[ii][jj];
-                new_image[i + 1][j + 1] = image[ii][jj];
-                jj += 1;
-            }
-            jj = SIZE/2;
-            ii += 1;
-        }
-    }
-    else if (part == 3) {
-        int ii = SIZE / 2, jj = 0;
-        for (int i = 0;i < SIZE;i += 2) {
-            for (int j = 0; j < SIZE; j += 2) {
+
                 new_image[i][j] = image[ii][jj];
                 new_image[i][j + 1] = image[ii][jj];
                 new_image[i + 1][j] = image[ii][jj];
@@ -589,10 +580,51 @@ void enlarge_image() {
             ii += 1;
         }
     }
-    else if (part == 4) {
-        int ii = SIZE / 2, jj = SIZE / 2;
+    
+    // enlarge part 2
+    else if (part == 2) {
+        int ii = 0, jj = SIZE / 2;
+
         for (int i = 0;i < SIZE;i += 2) {
             for (int j = 0; j < SIZE; j += 2) {
+
+                new_image[i][j] = image[ii][jj];
+                new_image[i][j + 1] = image[ii][jj];
+                new_image[i + 1][j] = image[ii][jj];
+                new_image[i + 1][j + 1] = image[ii][jj];
+                jj += 1;
+            }
+            jj = SIZE / 2;
+            ii += 1;
+        }
+    }
+
+    // enlarge part 3
+    else if (part == 3) {
+        int ii = SIZE / 2, jj = 0;
+
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+
+                new_image[i][j] = image[ii][jj];
+                new_image[i][j + 1] = image[ii][jj];
+                new_image[i + 1][j] = image[ii][jj];
+                new_image[i + 1][j + 1] = image[ii][jj];
+                jj += 1;
+            }
+            jj = 0;
+            ii += 1;
+        }
+    }
+
+    //enlarge part 4
+    else if (part == 4) {
+
+        int ii = SIZE / 2, jj = SIZE / 2;
+
+        for (int i = 0;i < SIZE;i += 2) {
+            for (int j = 0; j < SIZE; j += 2) {
+
                 new_image[i][j] = image[ii][jj];
                 new_image[i][j + 1] = image[ii][jj];
                 new_image[i + 1][j] = image[ii][jj];
@@ -609,9 +641,11 @@ void enlarge_image() {
     }
 
 }
+
 //_________________________________________
 void shrink_image() {
 
+    //ask the user he want to shrink the image
     int choice;
     cout << "How do you want to shrink the photo?" << endl;
     cout << "1- Shrink it to the half " << endl;
@@ -632,6 +666,7 @@ void shrink_image() {
             k++;
         }
     }
+    
     //shrink to 1/3
     else if (choice == 2) {
         for (int i = 0; i < SIZE; i += 3) {
@@ -657,6 +692,8 @@ void shrink_image() {
         }
     }
 }
+
+//_________________________________________
 void shuffle_image() {
     int part, i, j, ii, jj;
 
@@ -715,6 +752,7 @@ void shuffle_image() {
 
     }
 }
+
 //_________________________________________
 void blur_image() {
    
