@@ -39,116 +39,116 @@ void blur_image();
 int main()
 {
     int choice;
+    while (true){
+        cout << "  Helloo 😁" << endl;
+        cout << "  Please select a filter to apply or 0 to exit:" << endl;
+        cout << "    1- Black & White Filter" << endl;
+        cout << "    2- Invert Filter" << endl;
+        cout << "    3- Merge Filter" << endl;
+        cout << "    4- Flip Image" << endl;
+        cout << "    5- Rotate Image" << endl;
+        cout << "    6- Darken and Lighten Image" << endl;
+        cout << "    7- mirror " << endl;
+        cout << "    8- detect image " << endl;
+        cout << "    9- enlarge image " << endl;
+        cout << "    10- Shrink image " << endl;
+        cout << "    11- shuffle image " << endl;
+        cout << "    12- Blur image " << endl;
+        cout << "    0- exit" << endl;
 
-    cout << "  Helloo 😁" << endl;
-    cout << "  Please select a filter to apply or 0 to exit:" << endl;
-    cout << "    1- Black & White Filter" << endl;
-    cout << "    2- Invert Filter" << endl;
-    cout << "    3- Merge Filter" << endl;
-    cout << "    4- Flip Image" << endl;
-    cout << "    5- Rotate Image" << endl;
-    cout << "    6- Darken and Lighten Image" << endl;
-    cout << "    7- mirror " << endl;
-    cout << "    8- detect image " << endl;
-    cout << "    9- enlarge image " << endl;
-    cout << "    10- Shrink image " << endl;
-    cout << "    11- shuffle image " << endl;
-    cout << "    12- Blur image " << endl;
-    cout << "    0- exit" << endl;
+        cin >> choice;
 
-    cin >> choice;
+        if (choice == 1)
+        {
+            loadImage();
+            black_and_white();
+            saveImage();
+        }
 
-    if (choice == 1)
-    {
-        loadImage();
-        black_and_white();
-        saveImage();
-    }
+        else if (choice == 2)
+        {
+            loadImage();
+            invert_image();
+            saveImage();
+        }
 
-    else if (choice == 2)
-    {
-        loadImage();
-        invert_image();
-        saveImage();
-    }
+        else if (choice == 3)
+        {
+            loadImage();
+            loadImage2();
+            merge_images();
+            save_newImage();
+        }
 
-    else if (choice == 3)
-    {
-        loadImage();
-        loadImage2();
-        merge_images();
-        save_newImage();
-    }
+        else if (choice == 4)
+        {
+            loadImage();
+            flip_image();
+            saveImage();
+        }
 
-    else if (choice == 4)
-    {
-        loadImage();
-        flip_image();
-        saveImage();
-    }
+        else if (choice == 5)
+        {
+            loadImage();
+            rotate_image();
+            saveImage();
+        }
 
-    else if (choice == 5)
-    {
-        loadImage();
-        rotate_image();
-        saveImage();
-    }
+        else if (choice == 6)
+        {
+            loadImage();
+            darken_and_lighten_image();
+            saveImage();
+        }
 
-    else if (choice == 6)
-    {
-        loadImage();
-        darken_and_lighten_image();
-        saveImage();
-    }
+        else if (choice == 7)
+        {
+            loadImage();
+            mirror_image();
+            saveImage();
+        }
 
-    else if (choice == 7)
-    {
-        loadImage();
-        mirror_image();
-        saveImage();
-    }
+        else if (choice == 8)
+        {
+            loadImage();
+            detect_edges();
+            save_newImage();
+        }
+        else if (choice == 9)
+        {
+            loadImage();
+            enlarge_image();
+            save_newImage();
+        }
 
-    else if (choice == 8)
-    {
-        loadImage();
-        detect_edges();
-        save_newImage();
-    }
-    else if (choice == 9)
-    {
-        loadImage();
-        enlarge_image();
-        save_newImage();
-    }
-
-    else if (choice == 10)
-    {
-        loadImage();
-        shrink_image();
-        save_newImage();
-    }
-    else if (choice == 11)
-    {
-        loadImage();
-        shuffle_image();
-        save_newImage();
-    }
-    else if (choice == 12)
-    {
-        loadImage();
-        blur_image();
-        saveImage();
-    }
-    else if (choice == 0)
-    {
-        return 0;
-    }
-    else
-    {
-        cout << "Invalid Input";
+        else if (choice == 10)
+        {
+            loadImage();
+            shrink_image();
+            save_newImage();
+        }
+        else if (choice == 11)
+        {
+            loadImage();
+            shuffle_image();
+            save_newImage();
+        }
+        else if (choice == 12)
+        {
+            loadImage();
+            blur_image();
+            saveImage();
+        }
+        else if (choice == 0)
+        {
+            break;
+        }
+        else
+        {
+            cout << "Invalid Input";
+        }
     }
 }
-
 //_________________________________________
 void loadImage()
 {

@@ -14,6 +14,19 @@
 
 -> if he want to flip it horizontaly
 ---> we will swap the rows as we swapped the rows 
+
+
+--- mirror filter ---
+-> just go to every row / or column and copy it in the oppsite side this will create the mirror effect
+
+
+--- detect edges ---
+-> first create gx matrix and gy matrix with some values
+-> then get the sum of the square of pixels surronding each pixel such as we multiply each pixel with its corrsponding value to the 3*3 gx/gy matrix and then put the sum in a varible
+-> get the result of square root of the gx sum power 2 + gy sum power 2 
+-> check if this result is greater than 255 and if so make it equal to 255
+-> then covert every not white pixel to a black one
+-> then covert evert white pixel to black and every black one to white
 ____________________________________________________________________________________________________________________________________________________
 
 Algorithm of filter (invert image):

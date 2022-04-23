@@ -53,7 +53,7 @@ int main()
   cout <<"    9- Shrink image " << endl;
   cout <<"    10- enlarge image " << endl;
   cout <<"    11- shuffle image " << endl;
-  cout << "   12- Blur image " << endl;
+  cout <<"    12- Blur image  " << endl;
   cout <<"    0- exit" << endl;
 
   cin >> choice;
@@ -113,7 +113,7 @@ int main()
     enlarge_image();
       save_newImage();
   }
-  
+  \
     else if (choice == 11) {
       loadImage();
     shuffle_image();
